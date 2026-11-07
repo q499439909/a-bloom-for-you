@@ -1,0 +1,367 @@
+@font-face{font-family:'Bloom Numerals';src:url('assets/fonts/bloom-numerals.woff') format('woff');font-style:normal;font-weight:400;font-display:swap}
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:#e8e5dc;background:#000;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,a,input,summary{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}button:disabled{opacity:.55;cursor:wait}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #ae725e;outline-offset:4px}header{height:96px;margin:0 5%;border-bottom:1px solid #2a2c25;display:flex;align-items:center;justify-content:space-between}.brand{color:inherit;text-decoration:none;display:flex;align-items:center;gap:12px;font-size:19px;letter-spacing:2px}.brand small{font-size:9px;letter-spacing:2px;margin-left:12px;color:#85867e}.mark{font-size:32px;color:#c8bc94}.edition{font-size:11px;color:#96978d;letter-spacing:2px}main{max-width:1500px;margin:auto;padding:46px 5% 30px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:64px}.garden{min-width:0;display:flex;flex-direction:column}.eyebrow{font-size:10px;letter-spacing:2.5px;color:#929489}h1{font-family:Georgia,"Songti SC",serif;font-weight:400;font-size:42px;letter-spacing:3px;margin:15px 0 12px}.garden-heading p{font-size:13px;color:#96978d;letter-spacing:2px;margin:0}.flower{position:relative;flex:1;display:grid;place-items:center;min-height:360px;margin:10px -10px 0}canvas{width:100%;height:auto;max-height:66vh;object-fit:contain}#loading{position:absolute;color:#a8a99c;font-size:12px}#loading[hidden]{display:none}.flower-footer{display:flex;justify-content:space-between;border-top:1px solid #2a2c25;padding:21px 0 0;letter-spacing:2px;font-size:10px}.muted{color:#95978b;letter-spacing:1px}.dot{display:inline-block;background:var(--flower-accent,#e4b4bd);width:6px;height:6px;border-radius:50%;margin-right:9px}aside{padding-top:4px}h2{font-weight:500;font-size:20px;margin:12px 0 23px;letter-spacing:1px}.modes{display:flex;gap:10px}.mode{background:transparent;border:1px solid #34362e;border-radius:13px;padding:16px 12px;text-align:left;flex:1;color:#a6a99b;display:grid;grid-template-columns:34px 1fr;gap:4px}.mode span{grid-row:span 2;font-size:24px}.mode b{font-size:14px;font-weight:500}.mode small{font-size:10px}.mode.active{background:#25291e;border-color:#818763;color:#e2e7c9}#instruction{font-size:12px;line-height:1.9;color:#a4a795;min-height:46px;margin:17px 0}.camera{height:170px;background:#11140f;border:1px solid #2d3326;border-radius:12px;position:relative;overflow:hidden}.camera video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}#camera-placeholder{position:absolute;inset:0;text-align:center;padding-top:32px;color:#8e9783}#camera-placeholder[hidden]{display:none}#camera-placeholder>span{font-size:25px}#camera-placeholder p{font-size:12px;margin:10px 0 6px}#camera-placeholder small{font-size:10px;color:#8c9580}#camera-tag{position:absolute;bottom:10px;left:12px;font-size:9px;background:#131a10dd;padding:5px 8px;border-radius:5px;color:#b2c49c}.primary{margin-top:13px;border:0;background:#c5cca5;color:#1c2414;width:100%;padding:14px 17px;border-radius:9px;font-size:13px;text-align:left;letter-spacing:1px}.primary span{float:right}#status{font-size:11px;line-height:1.8;min-height:39px;color:#9a9f8b;margin:11px 0 15px}.bloom-label{display:flex;align-items:center;justify-content:space-between;font-size:12px}.bloom-label strong{font-size:25px;font-weight:400}.bloom-label small{font-size:12px;margin-left:3px}input[type=range]{width:100%;accent-color:#c4cea0;height:18px;margin:10px 0 0;cursor:ew-resize}.range-label{display:flex;justify-content:space-between;font-size:10px;color:#8f9581}#resume{background:transparent;border:0;color:#cad7aa;font-size:11px;padding:10px 0 0}details{margin-top:24px;padding-top:18px;border-top:1px solid #2a2c25;font-size:11px;color:#a2aa91}summary{cursor:pointer;list-style:none}summary span{float:right}details p{line-height:1.8}.calibration{display:flex;gap:7px}.calibration button{border:1px solid #414735;border-radius:5px;background:transparent;padding:7px 8px;font-size:10px;color:#bbc9a3}.privacy{font-size:10px;color:#7f8973;margin:22px 0 0}footer{margin:0 5%;padding:20px 0 25px;border-top:1px solid #2a2c25;display:flex;justify-content:space-between;color:#89917e;font-size:10px;letter-spacing:2px}@media(min-width:1450px){main{padding-top:60px;gap:100px}}@media(max-width:850px){header{height:75px}.brand small{display:none}main{gap:30px;grid-template-columns:minmax(0,1fr) 300px;padding-top:30px}h1{font-size:32px}.flower{min-height:320px}.edition{font-size:9px}}@media(max-width:650px){header{height:68px}.edition{letter-spacing:0}main{display:block;padding-top:30px}h1{font-size:32px}.garden-heading{text-align:center}.flower{min-height:230px;margin-top:5px}canvas{max-height:43vh}.flower-footer{padding-top:12px;margin-bottom:32px}aside{max-width:420px;margin:auto}.camera{height:190px}footer{margin-top:25px;font-size:9px}.panel-title h2{margin-bottom:17px}}
+
+/* Match the mirrored video and marker geometry without stretching or cropping. */
+.camera{height:auto!important;aspect-ratio:4/3}
+.camera video{object-fit:contain}
+#tracking{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:contain;pointer-events:none}
+#tracking-value{position:absolute;left:10px;top:10px;max-width:calc(100% - 20px);font-size:10px;line-height:1.5;letter-spacing:.3px;color:#edfff7;background:#15372bcb;border-radius:5px;padding:5px 8px;pointer-events:none}
+#tracking-value:empty{display:none}
+
+.flower{background:#000}
+.flower-navigation{display:flex;align-items:center;justify-content:center;gap:15px;margin-top:21px}
+.flower-navigation>button{width:34px;height:34px;border:1px solid #30332a;border-radius:50%;background:transparent;color:#b1b69f;font-size:18px}
+.flower-navigation>button:hover{border-color:#b7be9d;color:#fff}
+.flower-options{display:flex;gap:8px}
+.flower-options button{display:flex;align-items:center;gap:8px;border:1px solid #30332a;background:#090b08;color:#949b86;border-radius:30px;padding:9px 15px;font-size:12px}
+.flower-options button.selected{border-color:var(--flower-accent);color:var(--flower-accent);background:#151510}
+.flower-options i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.peony-dot{background:#e4b4bd}.rose-dot{background:#e9cb79}
+
+@media(max-width:650px){.flower-footer{margin-bottom:0}.flower-navigation{margin-top:18px}.edition{font-size:8px}}
+
+/* Recognition cues live inside the camera instead of adding a separate panel. */
+.camera-hud{position:absolute;inset:9px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none;gap:12px}
+.camera-topline{display:flex;gap:6px;align-items:center;min-width:0}
+.hand-roles{display:flex;gap:5px;flex:1;min-width:0}
+.hand-roles span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;line-height:1.5;padding:4px 7px;border-radius:20px;background:#0a120de0;border:1px solid #ffffff1a;backdrop-filter:blur(8px)}
+#role-control{color:#c3e8d9}#role-switch{color:#c2dcf4}
+#reset-hand-roles{pointer-events:auto;flex-shrink:0;width:25px;height:25px;border:1px solid #ffffff30;border-radius:50%;margin:0;padding:0;font-size:16px;color:#e6eddb;background:#0a120ddd;backdrop-filter:blur(8px)}
+#reset-hand-roles:disabled{cursor:default;opacity:.4}
+#reset-hand-roles[hidden]{display:none}
+#swipe-guide{padding:9px 11px;border:1px solid #ffffff25;border-radius:8px;background:#0a1114d9;backdrop-filter:blur(10px);transition:border-color .18s,background .18s}
+.swipe-heading{display:flex;align-items:center;gap:7px}.swipe-heading strong{font-size:12px;font-weight:500;color:#e0e7ee;line-height:1.5}
+.swipe-dot{width:6px;height:6px;border-radius:50%;background:#9fb5ca;flex-shrink:0}
+#swipe-help{font-size:10px;line-height:1.5;color:#c0cbd1;margin:3px 0 7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#swipe-progress{height:3px;background:#ffffff24;border-radius:4px;overflow:hidden}
+#swipe-progress-fill{display:block;height:100%;width:0;background:#9bc6ea;transition:width .08s linear}
+#swipe-guide[data-state=ready]{background:#102b1de8;border-color:#9be7af;box-shadow:0 0 18px #77bf8820}
+#swipe-guide[data-state=ready] .swipe-heading strong{color:#d2ffdb}
+#swipe-guide[data-state=ready] .swipe-dot,#swipe-guide[data-state=ready] #swipe-progress-fill{background:#a4f4b6}
+#swipe-guide[data-state=ready] #swipe-help{color:#c3e6cb}
+#swipe-guide[data-state=switched]{border-color:#dedfb0;background:#252719e8}
+#swipe-guide[data-state=cooldown]{background:#101714dc}
+#tracking-value,#camera-tag{display:none}
+#status{position:absolute;inset:auto 9px 88px;z-index:2;min-height:0;margin:0;padding:8px 10px;border-radius:7px;background:#10150fea;color:#e3e8d8;font-size:11px;line-height:1.6;pointer-events:none}
+#status[hidden]{display:none}
+#camera-placeholder{padding:30px 10px 70px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#camera-placeholder[hidden]{display:none}
+#camera-placeholder p{margin:8px 0 5px}
+.bloom-label{margin-top:21px}
+.garden-heading h1{margin-top:0}
+
+/* Two full screens: flowers first, controls on the following screen. */
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+main{display:block;max-width:none;padding:0;margin:0}
+.garden{height:100svh;min-height:540px;width:min(100%,1040px);margin:0 auto;padding:34px clamp(24px,6vw,64px) 24px;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;scroll-snap-align:start}
+.garden-heading{text-align:left}.garden-heading h1{font-size:clamp(30px,4vw,44px);margin:0 0 12px}
+.garden-heading p{font-size:12px;letter-spacing:2px}
+.garden .flower{display:grid;min-height:0;margin:0;overflow:hidden}
+.garden #flower{display:block;width:100%;height:100%;max-height:none;object-fit:contain}
+.flower-footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-top:13px;gap:16px;margin:0}
+#frame{justify-self:end}
+.hero-percentage{display:flex;align-items:baseline;gap:10px;letter-spacing:0}
+.hero-percentage>span{font-size:10px;color:#939b87}
+.hero-percentage strong{font-size:23px;font-weight:400;color:#e8e5dc;font-variant-numeric:tabular-nums}
+.hero-percentage small{font-size:11px;margin-left:2px}
+.flower-navigation{margin-top:17px}
+.controls-page{min-height:100svh;background:#070906;display:flex;flex-direction:column;scroll-snap-align:start;padding-bottom:0}
+.controls-page header{height:80px;flex-shrink:0;max-width:1120px;width:90%;margin:0 auto}
+.back-to-garden{text-decoration:none;color:#a6b28f;font-size:11px;letter-spacing:1px}
+.controls-layout{display:grid;grid-template-columns:minmax(0,360px) minmax(0,460px);gap:54px;width:90%;max-width:900px;margin:auto;padding:50px 0;align-items:start}
+.control-options,.camera-controls{min-width:0}
+.controls-layout .panel-title{margin-bottom:20px}.controls-layout h2{margin:12px 0 0}
+.camera-controls .camera{width:100%;aspect-ratio:4/3}
+.camera-controls #resume{display:block;margin-top:8px}
+.camera-controls #resume[hidden]{display:none}
+.controls-page footer{width:90%;max-width:1120px;margin:0 auto;flex-shrink:0}
+@media(max-width:650px){
+ .garden{min-height:520px;padding:28px 22px 22px}
+ .garden-heading h1{font-size:30px}.garden-heading p{font-size:11px;letter-spacing:1px}
+ .flower-footer{gap:8px;padding-top:12px;font-size:9px}.hero-percentage{gap:5px}.hero-percentage>span{font-size:9px}.hero-percentage strong{font-size:20px}
+ .flower-navigation{margin-top:15px}.flower-options button{padding:8px 12px}
+ .controls-page header{height:68px}.controls-layout{display:flex;flex-direction:column;gap:26px;max-width:420px;padding:32px 0}
+ .control-options,.camera-controls{width:100%}.camera-controls{order:-1}
+ .controls-page footer{margin-top:10px;font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Keep the canvas inside its grid row at every viewport size. */
+.garden .flower{position:relative;contain:layout paint}
+.garden #flower{position:absolute;inset:0;min-width:0;min-height:0}
+
+/* A quiet cue connects the flower screen with its controls. */
+.garden{grid-template-rows:auto minmax(0,1fr) auto auto auto;padding-bottom:14px}
+.flower-footer{grid-template-columns:1fr auto}
+.scroll-cue{width:60px;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:13px;text-decoration:none;color:#8d9582}
+.scroll-cue span{width:7px;height:7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);animation:scroll-nudge 2.5s ease-in-out infinite}
+.scroll-cue small{font-size:9px;letter-spacing:2px;margin-top:2px}
+@keyframes scroll-nudge{0%,100%{transform:translateY(0) rotate(45deg);opacity:.5}50%{transform:translateY(3px) rotate(45deg);opacity:1}}
+.controls-page .controls-layout{padding:60px 0;margin:auto}
+.controls-layout .panel-title h2{margin-top:0}
+.controls-page footer{justify-content:flex-start}
+#camera-consent{width:min(390px,calc(100% - 40px));padding:30px;border:1px solid #444c37;border-radius:18px;background:#11150fee;color:#e5eadc;box-shadow:0 30px 100px #0009}
+#camera-consent::backdrop{background:#0008;backdrop-filter:blur(6px)}
+.consent-symbol{font-size:28px;color:#c4cfa5;margin-bottom:16px}
+#camera-consent h2{font-size:21px;margin:0 0 14px;font-weight:500}
+#camera-consent-message{font-size:13px;color:#b4bea6;line-height:1.9;margin:0}
+.consent-note{font-size:10px;color:#88937c;line-height:1.7;margin:12px 0 24px}
+.consent-actions{display:flex;gap:10px}
+.consent-actions button{padding:12px 16px;font-size:12px;border-radius:8px;border:1px solid #3d4830}
+#camera-allow{background:#c5cca5;color:#1c2414;flex:1;border-color:#c5cca5}
+#camera-later{background:transparent;color:#a6b495}
+@media(max-width:650px){.garden{padding-bottom:14px}.scroll-cue{margin-top:12px}.controls-page .controls-layout{padding:38px 0}}
+@media(prefers-reduced-motion:reduce){.scroll-cue span{animation:none}}
+
+.bouquet-dot{background:#c7bcdf}
+.flower-navigation{gap:10px}.flower-options{gap:6px}
+.flower-options button{white-space:nowrap;font-size:11px;padding:9px 12px}
+@media(max-width:400px){.flower-navigation{gap:6px}.flower-navigation>button{width:26px;height:26px;font-size:15px}.flower-options{gap:4px}.flower-options button{font-size:10px;padding:8px 7px;gap:6px}.flower-options i{width:6px;height:6px}}
+
+/* One shared row keeps the introduction, flower and letter in three columns. */
+.garden{width:min(100%,1440px);grid-template-rows:minmax(0,1fr) auto auto auto;padding:28px clamp(22px,4vw,60px) 14px;min-height:640px}
+.hero-scene{display:grid;grid-template-columns:minmax(150px,.9fr) minmax(0,1.5fr) minmax(190px,1fr);grid-template-rows:minmax(0,1fr);gap:24px;min-height:0;align-items:center}
+.garden-heading{grid-column:1;grid-row:1;align-self:center;position:relative;z-index:1;min-width:0;padding:0;display:block;text-align:left}
+.garden-heading h1{font-size:clamp(25px,2.6vw + 2px,39px);line-height:1.5;letter-spacing:1px;margin:0 0 14px}
+.garden-heading h1 br{display:block}
+.garden-heading>p{font-size:13px;line-height:1.9;letter-spacing:.5px;margin:0;color:#969e8d}
+.home-modes{display:inline-flex;border:1px solid #34392d;border-radius:30px;padding:3px;gap:3px;margin:24px 0 0}
+.home-modes button{background:transparent;border:0;border-radius:24px;padding:7px 16px;color:#8f9885;font-size:13px}
+.home-modes .active{background:#282f21;color:#e0e8cd}
+.garden-heading #home-instruction{font-size:12px;letter-spacing:0;color:#7e8776;margin:15px 0 22px;line-height:1.9}
+.home-recognition{font-size:12px;color:#929e89;line-height:1.8;max-width:230px}
+.home-recognition>span{display:block}.home-recognition>span:before{content:'·';margin-right:7px;color:#9aab8b}
+.home-recognition p{margin:9px 0 6px;font-size:12px;color:#aab5a0;min-height:18px}
+.home-progress{height:2px;background:#262c22;overflow:hidden;border-radius:3px;max-width:200px}
+.home-progress span{display:block;width:0;height:100%;background:#9eb88c;transition:width .08s linear}
+.home-recognition[data-state=ready] p{color:#a8e8ba}.home-recognition[data-state=ready] .home-progress span{background:#a8e8ba}
+.home-actions{display:flex;flex-wrap:wrap;gap:15px;margin-top:19px}
+.home-actions button,#home-camera{border:0;border-bottom:1px solid #333c2d;background:transparent;color:#a7b296;font-size:12px;padding:5px 0}
+#home-camera{margin-top:12px}#home-camera[hidden]{display:none}
+.hero-scene .flower{grid-column:2;grid-row:1;width:100%;height:100%;min-height:0;transform:translateX(8px)}
+.garden #flower-transition{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:fill;pointer-events:none}
+#flower-transition[hidden]{display:none}
+.flower-letter{grid-column:3;grid-row:1;align-self:center;min-width:0;padding:0}
+.letter-english{font-family:Georgia,serif;font-size:14px;letter-spacing:.6px;color:var(--flower-accent);margin:0 0 17px;line-height:1.6}
+.flower-letter h2{font-family:Georgia,"Songti SC",serif;font-size:34px;font-weight:400;letter-spacing:4px;margin:0 0 29px;color:#ece8df}
+.letter-blessing{font-family:"Songti SC",Georgia,serif;font-size:15px;color:#a6a69a;line-height:2.2;letter-spacing:.3px}
+.letter-blessing p{margin:0}.letter-blessing p:nth-child(3){margin-top:14px}
+.letter-keywords{font-size:12px;color:#777f6f;letter-spacing:2px;margin:28px 0 0}
+#calibration-dialog{width:min(400px,calc(100% - 40px));padding:28px;border:1px solid #444c37;border-radius:18px;background:#11150f;color:#e5eadc}
+#calibration-dialog::backdrop{background:#0009;backdrop-filter:blur(6px)}
+#calibration-dialog h2{margin:0 0 16px}#calibration-dialog p{font-size:12px;line-height:1.9;color:#aab89b}
+#calibration-feedback{min-height:44px;color:#d0ddbd!important}
+#calibration-dialog .calibration button{font-size:12px;flex:1;padding:11px}
+.calibration-bottom{display:flex;justify-content:space-between;margin-top:24px}.calibration-bottom button{border:0;background:transparent;color:#b8c5a4;font-size:11px;padding:8px}
+@media(max-width:1000px){
+ .hero-scene{gap:16px;grid-template-columns:minmax(145px,.9fr) minmax(0,1.4fr) minmax(180px,1fr)}
+ .garden-heading h1{font-size:27px}.garden-heading>p{font-size:12px;letter-spacing:0}
+ .garden-heading #home-instruction,.home-recognition,.home-recognition p{font-size:11px}
+ .home-modes button{font-size:12px;padding:7px 14px}.home-actions{gap:12px}
+ .flower-letter h2{font-size:28px;letter-spacing:3px}.letter-english{font-size:12px}.letter-blessing{font-size:13px;letter-spacing:0}.letter-keywords{font-size:11px;letter-spacing:1px}
+}
+@media(max-width:650px){
+ .garden{padding:22px 18px 12px;min-height:680px}
+ .hero-scene{grid-template-columns:minmax(120px,.9fr) minmax(0,1.2fr) minmax(155px,1fr);gap:10px}
+ .garden-heading h1{font-size:24px}.home-modes button{padding:6px 10px}.home-actions{gap:8px}
+ .flower-letter h2{font-size:24px;letter-spacing:2px}.letter-english{font-size:10px}.letter-blessing{font-size:12px}.letter-keywords{font-size:10px}
+}
+@media(max-width:540px){
+ .garden{height:auto;min-height:100svh}
+ .hero-scene{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(310px,50svh) auto;gap:12px 18px}
+ .hero-scene .flower{grid-column:1;grid-row:1;transform:none}
+ .flower-letter{grid-column:2;grid-row:1}
+ .garden-heading{grid-column:1 / -1;grid-row:2;padding:15px 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+ .garden-heading h1{grid-column:1;grid-row:1;font-size:23px}.garden-heading h1 br{display:none}.garden-heading>p{grid-column:1;grid-row:2}
+ .home-modes{grid-column:2;grid-row:1;align-self:start;justify-self:start;margin:0}
+ .garden-heading #home-instruction{grid-column:1;grid-row:3;margin:10px 0 0}
+ .home-recognition{grid-column:2;grid-row:2 / span 2}.home-actions{grid-column:1 / -1;margin-top:12px}
+ .garden #home-camera{grid-column:2;margin:0;justify-self:start}
+}
+
+/* Keep flower selection and bloom percentage on the same baseline. */
+.garden{grid-template-rows:minmax(0,1fr) auto auto;padding-bottom:max(14px,env(safe-area-inset-bottom))}
+.flower-footer{grid-template-columns:minmax(0,1fr) auto minmax(110px,1fr);padding-top:16px;gap:12px}
+.flower-footer .flower-navigation{grid-column:2;grid-row:1;margin:0}
+.flower-footer .hero-percentage{grid-column:3;grid-row:1;justify-self:end;white-space:nowrap}
+@media(max-width:600px){
+ .flower-footer{grid-template-columns:minmax(0,1fr) auto;gap:10px}
+ .flower-footer .flower-navigation{grid-column:1;gap:5px;justify-content:flex-start}
+ .flower-footer .hero-percentage{grid-column:2;gap:4px}
+ .flower-footer .hero-percentage>span{display:none}
+ .flower-footer .flower-options{gap:4px}
+ .flower-footer .flower-options button{font-size:10px;padding:8px 7px;gap:5px}
+ .flower-footer .flower-navigation>button{width:25px;height:25px}
+}
+
+/* The first-screen footer contains only flower selection. */
+.flower-footer{display:flex;justify-content:center}
+.flower-footer .flower-navigation{justify-content:center}
+
+/* A fading rule separates the quiet operation guide from the garden. */
+.garden-heading::after{content:"";position:absolute;top:-24px;bottom:-24px;right:-12px;width:1px;background:linear-gradient(to bottom,transparent,#8d987c45 20%,#8d987c45 80%,transparent);pointer-events:none}
+@media(max-width:1000px){.garden-heading::after{right:-8px}}
+@media(min-width:541px) and (max-width:650px){.garden-heading::after{right:-5px}}
+@media(max-width:540px){.garden-heading::after{top:0;bottom:auto;left:0;right:0;width:100%;height:1px;background:linear-gradient(to right,transparent,#8d987c45 20%,#8d987c45 80%,transparent)}}
+
+/* The tiny inline poster paints before scripts or video resources finish. */
+.garden .flower-preview{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(var(--preview-scale,1.152));pointer-events:none}
+.flower-preview[hidden]{display:none}
+
+/* One garden screen, with the live recognition preview below the letter. */
+html{scroll-snap-type:none}
+.garden{grid-template-rows:minmax(0,1fr) auto;min-height:600px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+.hero-scene{min-height:0}
+.letter-column{grid-column:3;grid-row:1;align-self:center;display:flex;flex-direction:column;gap:24px;min-width:0;max-height:100%}
+.letter-column .flower-letter{align-self:stretch}
+.letter-column .flower-letter h2{margin-bottom:18px}
+.letter-column .letter-keywords{margin-top:18px}
+.letter-column>.camera-controls{width:min(100%,270px);align-self:flex-end;flex-shrink:0;order:0}
+.camera-controls .camera{width:100%;aspect-ratio:4/3;border-color:#3a4033}
+.camera-controls #start{margin-top:7px;padding:7px 2px;background:transparent;color:#98a28b;border-radius:0;font-size:11px;letter-spacing:0}
+.camera-controls .camera-hud{inset:7px;gap:6px}
+.camera-controls .hand-roles{flex-direction:column;gap:3px;align-items:flex-start}
+.camera-controls .hand-roles span{font-size:8px;padding:2px 6px}
+.camera-controls .camera-topline{align-items:flex-start}
+.camera-controls #reset-hand-roles{width:23px;height:23px;font-size:15px}
+.camera-controls #swipe-guide{padding:6px 8px}
+.camera-controls .swipe-heading strong{font-size:10px}
+.camera-controls #swipe-help{display:none}
+.camera-controls #swipe-progress{height:2px;margin-top:4px}
+.camera-controls #camera-placeholder{padding:46px 8px 35px}
+.camera-controls #camera-placeholder>span{font-size:17px}
+.camera-controls #camera-placeholder p{font-size:10px;margin:5px 0}
+.camera-controls #camera-placeholder small{display:none}
+.camera-controls #status{inset:auto 7px 43px;font-size:10px;padding:6px 8px}
+.flower-footer{padding-top:14px}
+@media(min-width:541px) and (max-height:760px){
+ .letter-column{gap:14px}.letter-column>.camera-controls{width:min(100%,210px)}
+ .letter-column .letter-blessing{line-height:1.9}.letter-column .letter-keywords{margin-top:12px}
+ .garden-heading #home-instruction{margin-bottom:14px}.home-modes{margin-top:16px}.home-actions{margin-top:13px}
+}
+@media(max-width:540px){
+ .garden{height:100svh;min-height:650px;padding:18px 16px 12px}
+ .hero-scene{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:10px 14px}
+ .letter-column{grid-column:2;grid-row:1;gap:14px;align-self:center}
+ .letter-column .flower-letter h2{font-size:22px;margin-bottom:13px}
+ .letter-column .letter-blessing{font-size:11px;line-height:1.85}
+ .letter-column .letter-english{font-size:10px;margin-bottom:9px}
+ .letter-column .letter-keywords{font-size:9px;margin-top:12px;letter-spacing:0}
+ .letter-column>.camera-controls{width:100%}.camera-controls #start{font-size:10px;padding:4px 0;margin-top:4px}
+ .camera-controls .hand-roles{display:none}.camera-controls .camera-topline{justify-content:flex-end}
+ .camera-controls #swipe-guide{padding:4px 6px}.camera-controls .swipe-heading strong{font-size:9px}
+ .camera-controls #camera-placeholder{padding:22px 5px 25px}.camera-controls #camera-placeholder p{font-size:9px}
+ .garden-heading{padding:10px 0 14px;gap:0 12px}
+ .garden-heading h1{font-size:21px;margin-bottom:6px}.garden-heading>p{font-size:11px;line-height:1.7}
+ .garden-heading #home-instruction{font-size:10px;line-height:1.7;margin-top:7px}
+ .home-recognition,.home-recognition p{font-size:10px;line-height:1.7}.home-recognition p{margin:4px 0}
+ .home-actions{margin-top:9px}.home-actions button{font-size:11px}.home-modes button{font-size:11px}
+}
+
+/* The letter shares the flower's center; the camera is an independent corner tool. */
+.garden{position:relative}
+.letter-column{display:contents}
+.letter-column .flower-letter{grid-column:3;grid-row:1;align-self:center}
+.letter-column>.camera-controls{position:absolute;right:clamp(22px,4vw,60px);bottom:82px;width:clamp(160px,19vw,240px);max-width:25%;z-index:3;order:0;background:#000}
+.camera-toolbar{display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-top:7px;min-height:23px}
+#camera-toggle,.camera-controls #start{border:0;background:transparent;color:#8d9782;padding:4px 0;margin:0;font-size:10px;letter-spacing:0;white-space:nowrap;width:auto}
+#camera-toggle:hover,.camera-controls #start:hover{color:#d1dcc2}
+.camera-controls #start[hidden]{display:none}
+.camera-controls:not(.collapsed) #preview-cue{display:none}
+#preview-cue{font-size:10px;line-height:1.5;color:#8d9782;max-width:150px}
+#preview-cue[data-state=ready]{color:#a8e8ba}
+#preview-cue[data-state=error]{color:#d4b5a6}
+.camera-controls.collapsed{width:auto;max-width:calc(100% - 44px);background:transparent}
+.camera-controls.collapsed #camera-panel{position:fixed;top:0;left:0;width:1px;height:1px;overflow:hidden;opacity:.001;pointer-events:none}
+.camera-controls.collapsed .camera-toolbar{margin:0;gap:12px}
+.camera-controls #camera-placeholder p{font-size:9px}
+.letter-english{opacity:.8}
+.letter-keywords{letter-spacing:1.5px}
+@media(min-width:541px) and (max-height:760px){
+ .letter-column>.camera-controls{width:140px;bottom:72px}
+ .letter-column .letter-blessing{line-height:1.8}
+ .letter-column .flower-letter h2{margin-bottom:14px}
+}
+@media(max-width:540px){
+ .hero-scene{grid-template-rows:auto minmax(0,1fr);padding-bottom:130px}
+ .hero-scene .flower{grid-column:1;grid-row:2}
+ .letter-column .flower-letter{grid-column:2;grid-row:2}
+ .letter-column>.camera-controls{right:16px;bottom:64px;width:130px;max-width:40%}
+ .letter-column>.camera-controls.collapsed{width:auto;max-width:calc(100% - 32px)}
+ .garden-heading{grid-row:1;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}
+ .garden-heading h1 br{display:block}
+ .garden-heading::after{top:auto;bottom:0}
+ .garden-heading #home-instruction{grid-column:1;grid-row:3}
+ .home-actions{grid-column:2;grid-row:2 / span 2;align-content:start;align-items:flex-start;flex-direction:column;gap:6px;margin:0}
+ .garden #home-camera{grid-column:1;grid-row:4;margin-top:8px}
+ .camera-controls #preview-cue{font-size:9px}
+}
+
+/* Mobile introductions form one centered group above the flower and letter. */
+@media(max-width:540px){
+ .garden-heading{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0;padding:6px 0 18px}
+ .garden-heading h1{font-size:24px;line-height:1.5;margin:0 0 12px;letter-spacing:1px}
+ .garden-heading h1 br{display:none}
+ .garden-heading .home-modes{align-self:center;justify-self:auto;margin:0}
+ .garden-heading #home-instruction{font-size:11px;line-height:1.8;margin:12px 0 0;text-align:center}
+ .garden-heading .home-actions{flex-direction:row;justify-content:center;align-items:center;align-content:normal;gap:18px;margin:12px 0 0}
+ .garden #home-camera{align-self:center;margin-top:10px}
+}
+
+/* Small optical offsets keep the controls and mobile title balanced. */
+@media(min-width:541px){
+ .garden-heading .home-modes,.garden-heading #home-instruction,.garden-heading .home-actions{transform:translateY(-12px)}
+}
+@media(max-width:540px){
+ .garden-heading h1{transform:translateX(8px)}
+}
+
+/* A single cue at the top leaves the camera image unobstructed. */
+.camera-controls .hand-roles{display:none}
+.camera-controls .camera-hud{flex-direction:row;align-items:flex-start;justify-content:flex-start}
+.camera-controls .camera-topline{display:contents}
+.camera-controls #swipe-guide{order:-1;flex:1;min-width:0}
+
+/* Calibration reuses the live camera and landmark canvas inside the dialog. */
+#calibration-dialog{max-height:calc(100svh - 32px);overflow:auto}
+#calibration-dialog .calibration-camera{position:static;display:block;width:100%;max-width:none;margin:0 0 14px;align-self:auto}
+.calibration-camera .camera{width:100%;aspect-ratio:4/3;max-height:36svh}
+.calibration-camera .camera-hud{display:none}
+.calibration-start{display:block;width:100%;margin:0 0 14px;padding:9px 12px;border:1px solid #48543b;border-radius:7px;background:#252e20;color:#d1dec2;font-size:12px}
+.calibration-start[hidden]{display:none}
+
+/* Wishes keep their place in the layout, then appear once the bloom is complete. */
+#flower-letter[data-revealed=false] .letter-wish,#flower-letter[data-revealed=false] .letter-keywords{opacity:0;visibility:hidden;transform:translateY(5px);transition:none}
+#flower-letter[data-revealed=true] .letter-wish,#flower-letter[data-revealed=true] .letter-keywords{opacity:1;visibility:visible;transform:translateY(0);transition:opacity 1s ease,transform 1s ease}
+#flower-letter[data-revealed=true] .letter-keywords{transition-delay:.14s}
+.bloom-glow{position:absolute;left:50%;top:50%;width:100%;aspect-ratio:1;transform:translate(-50%,-50%);opacity:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse,transparent 28%,var(--flower-accent,#e4b4bd) 55%,transparent 74%);filter:blur(16px);mix-blend-mode:screen}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){
+ #flower-letter[data-revealed=true] .letter-wish,#flower-letter[data-revealed=true] .letter-keywords{transform:none;transition:opacity .15s ease;transition-delay:0s}
+}
+
+/* The image clips inside its own frame; the halo can breathe beyond it. */
+.garden .flower{overflow:visible;contain:layout;isolation:isolate}
+.flower-art{position:absolute;inset:0;overflow:hidden;contain:layout paint;z-index:1}
+.bloom-glow{z-index:2}
+.bloom-meter{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);width:min(100%,230px);text-align:center;z-index:3;pointer-events:none}
+.bloom-meter-line{display:flex;align-items:center;justify-content:center;gap:16px}
+.bloom-meter-number{display:flex;align-items:center;justify-content:center;flex:0 0 4em;height:1.2em;gap:4px;color:#dddcd0;font-family:'Bloom Numerals',Georgia,serif;font-size:30px;font-weight:400;line-height:1.2;font-variant-numeric:lining-nums tabular-nums;letter-spacing:1px}
+#bloom-percent{display:block;height:1.2em;line-height:1.2;text-align:center}
+.bloom-meter-number small{font-family:inherit;font-size:14px;line-height:1;color:#969b8d;letter-spacing:0;transform:translateY(.35em)}
+.bloom-meter-rule{height:1px;flex:1;max-width:48px;background:linear-gradient(to right,transparent,var(--flower-accent));opacity:calc(.22 + var(--bloom-progress,0)*.4)}
+.bloom-meter-rule:last-child{transform:scaleX(-1)}
+#bloom-progress-note{font-size:10px;line-height:1.6;letter-spacing:1.2px;color:#7e8876;margin:8px 0 0}
+.bloom-meter[data-phase=holding] .bloom-meter-number{color:var(--flower-accent)}
+.bloom-meter[data-phase=holding] #bloom-progress-note{color:#b9c5ad}
+@media(max-width:540px){
+ .bloom-meter{bottom:-78px;width:100%;max-width:180px}
+ .bloom-meter-line{gap:10px}.bloom-meter-number{font-size:24px}
+ .bloom-meter-rule{max-width:30px}#bloom-progress-note{font-size:9px;letter-spacing:.5px;margin-top:6px}
+ .bloom-glow{filter:blur(12px)}
+}
+
+@media(max-width:540px){.bloom-meter-number small{font-size:12px}}
+
+/* The loading cue belongs to the flower, independently of the progress meter. */
+#loading{left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;width:max-content;max-width:calc(100% - 24px);text-align:center;line-height:1.7;padding:8px 12px;border-radius:8px;background:rgba(0,0,0,.65);pointer-events:none}
