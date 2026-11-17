@@ -8,9 +8,13 @@
 
 ## 界面与扫码体验
 
-| 桌面界面 · 完全盛放后揭晓祝福 | 手机扫码体验 |
-| :---: | :---: |
-| ![A Bloom for You 桌面界面：牡丹盛放与祝福揭晓](docs/images/interface-desktop.jpg) | <a href="https://q499439909.github.io/a-bloom-for-you/"><img src="docs/images/experience-qr.png" width="200" alt="扫描二维码体验 A Bloom for You"></a><br>扫码后用手机浏览器打开 |
+<table>
+  <tr><th>桌面界面 · 完全盛放后揭晓祝福</th><th>手机扫码体验</th></tr>
+  <tr>
+    <td width="72%" align="center"><img src="docs/images/interface-desktop.jpg" width="640" alt="A Bloom for You 桌面界面：牡丹盛放与祝福揭晓"></td>
+    <td width="28%" align="center"><a href="https://q499439909.github.io/a-bloom-for-you/"><img src="docs/images/experience-qr.png" width="200" alt="扫描二维码体验 A Bloom for You"></a><br>扫码后用手机浏览器打开</td>
+  </tr>
+</table>
 
 默认使用微笑控制。允许摄像头后即可互动，也可以先点击「播放花开」观看。
 
@@ -88,7 +92,7 @@ cd a-bloom-for-you
 python3 -m http.server 8080 --bind 127.0.0.1
 ```
 
-然后打开 **http://127.0.0.1:8080/**。
+然后打开 **[http://127.0.0.1:8080/](http://127.0.0.1:8080/)**。
 
 请通过 `localhost` 或 HTTPS 使用摄像头，不要直接双击 HTML 以 `file://` 打开。手机体验请使用上方的线上 HTTPS 地址，并在浏览器中允许摄像头访问。
 
@@ -126,9 +130,9 @@ npm run verify:assets
 
 模型资源变更时，需要同时更新压缩文件、下载字节校验和备用线路版本，相关入口为 `asset-delivery.js`。花朵资源配置、文案及帧数位于 `app.js`。
 
-正式分享地址始终使用：**https://q499439909.github.io/a-bloom-for-you/**。无需添加 `?v=…` 或 `#bloom`；页面内部资源自己的版本参数用于缓存更新。
+正式分享地址始终使用：**[https://q499439909.github.io/a-bloom-for-you/](https://q499439909.github.io/a-bloom-for-you/)**。无需添加 `?v=…` 或 `#bloom`；页面内部资源自己的版本参数用于缓存更新。
 
-旧版体验地址仍保留：https://q499439909.github.io/flower-bloom-garden-20261025/。
+旧版体验地址仍保留：[旧版花园](https://q499439909.github.io/flower-bloom-garden-20261025/)。
 
 字体使用 Bodoni Moda 数字子集，许可见 [BodoniModa-OFL.txt](assets/fonts/BodoniModa-OFL.txt)。
 
