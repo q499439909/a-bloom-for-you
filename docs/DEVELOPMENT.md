@@ -76,3 +76,8 @@ npm run verify:assets
 - 原图和历史归档的恢复：[ARCHIVES.md](ARCHIVES.md)。
 
 修改运行文件后，检查变化，再运行 `python3 scripts/verify-assets.py --update` 更新清单；不要用更新清单来掩盖未经确认的文件变化。随后运行测试、检查浏览器并提交。网页资源内容变化时更新相应导入版本参数，分享地址本身不需要版本后缀。
+
+## README 展示素材
+
+界面截图与体验二维码位于 `docs/images/`，不参与网页运行资源下载。截图取自实际线上界面，保留完整布局。
+二维码指向正式短链接，可在工具环境中运行 `python scripts/generate-readme-qr.py` 重新生成；改变体验地址时需同步 README 链接及脚本常量，并重新检查二维码能否解码。
