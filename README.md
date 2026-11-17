@@ -123,3 +123,5 @@ npm run verify:assets
 旧版体验地址仍保留：https://q499439909.github.io/flower-bloom-garden-20261025/。
 
 字体使用 Bodoni Moda 数字子集，许可见 [BodoniModa-OFL.txt](assets/fonts/BodoniModa-OFL.txt)。
+
+本次独立化迁移的验证记录见 [迁移验收](docs/VALIDATION-2026-11-17.md)。

@@ -32,6 +32,8 @@ https://cdn.jsdelivr.net/gh/q499439909/a-bloom-for-you@models-v1/
 5. 提交后创建新标签，使用 `git push --atomic origin main models-v2` 一起发布代码与资源标签。
 6. 核对 Pages 和 jsDelivr 下载内容的 SHA-256 与本地文件一致。
 
+发布后可运行 `python3 scripts/verify-delivery.py` 检查两条线路；`--mirror-only` 只检查备用线路，在不读取主站的情况下下载并校验全部 4 个压缩资源。
+
 已发布标签不要移动或覆盖；旧标签应保留供缓存中的旧版页面使用。
 
 ## 历史与回退
