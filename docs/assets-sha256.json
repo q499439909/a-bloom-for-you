@@ -1,0 +1,152 @@
+{
+  "files": {
+    "app.js": {
+      "bytes": 26708,
+      "sha256": "4079348a3c5293ff8430d50b01fcf0d1e9fd692c663b1597423b5fc03891dac1"
+    },
+    "asset-delivery.js": {
+      "bytes": 3228,
+      "sha256": "68f410637178eb37282f8ffecb45853bbbea0c9d9bd062383e5940befc050298"
+    },
+    "assets/fonts/BodoniModa-OFL.txt": {
+      "bytes": 4400,
+      "sha256": "931dfe2e0cd3c9443295f5c1d754b8a8403bf060df50c1d5900267ade83d0046"
+    },
+    "assets/fonts/bloom-numerals.woff": {
+      "bytes": 2616,
+      "sha256": "c32ef60364765a6547a46aa4e41602334c0e1ab299e385ddea4e52ca201a3ecf"
+    },
+    "assets/posters/peony.jpg": {
+      "bytes": 33939,
+      "sha256": "3770a73fae6b074cd7329b1463433bf21e9f5e7a78b2b4e1d2b12cca22f1bb86"
+    },
+    "assets/posters/rose.jpg": {
+      "bytes": 24053,
+      "sha256": "2605cf81be335257966f8f17fa7d2fa824bfbe7c8c0d5c3aa26e8c24ac2677d3"
+    },
+    "assets/posters/spring-letter.jpg": {
+      "bytes": 83204,
+      "sha256": "529f65a3be60a9ccb35519d091c267df0565b039ded1d519be086931e69cb817"
+    },
+    "assets/video/peony-web.mp4": {
+      "bytes": 508719,
+      "sha256": "8ced34dca3f6797391ca4e532707e8c3afa5b4975358350b3480648048aed35a"
+    },
+    "assets/video/rose-web.mp4": {
+      "bytes": 376072,
+      "sha256": "3968935a7435d0893c7dbf62fd46f2a1c5646f0d8e492a7a008cb8852e24ed94"
+    },
+    "assets/video/spring-letter-web.mp4": {
+      "bytes": 489659,
+      "sha256": "1ba6a1ccafdac84c73bbb1a5ba438daa9d4973f0080d19184ae6bc026059c5dc"
+    },
+    "bloom-experience.js": {
+      "bytes": 2209,
+      "sha256": "736c94fcc24c67cf17ba8e04bd8f8f53cb49c2eca177054376473874e5202b96"
+    },
+    "bloom-feedback.js": {
+      "bytes": 861,
+      "sha256": "ef51185275dc9f5deb7ba3bed7d0bebbaa2bdad80bba3718ee6ed399b0049df8"
+    },
+    "camera-launch.js": {
+      "bytes": 292,
+      "sha256": "24b87a4d02b9b445faf772a7ecca3711c2ff524dc95617f6e884ab1a754462c2"
+    },
+    "hand-roles.js": {
+      "bytes": 2765,
+      "sha256": "f4ef5d39c5c472d2ec8ddfe947e645240c7f05560c130b69ca114bb2457961d1"
+    },
+    "index.html": {
+      "bytes": 51264,
+      "sha256": "bc70799b0c77cb98593086cb4ef9f276e7756919ef8fc9ac32b3eaf381b8aece"
+    },
+    "models/face_landmarker.task": {
+      "bytes": 3758596,
+      "sha256": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff"
+    },
+    "models/face_landmarker.task.gz": {
+      "bytes": 3331700,
+      "sha256": "0cd18d2eeb5521dec0763fb1886245c2041e533c34168db4fa805b9c44cf3d1f"
+    },
+    "models/hand_landmarker.task": {
+      "bytes": 7819105,
+      "sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1"
+    },
+    "models/hand_landmarker.task.gz": {
+      "bytes": 5813795,
+      "sha256": "a315a86beb1cc6c9450185b574ff70171307cff45f2ff219ab307ba2fa0df54f"
+    },
+    "paper-mask.js": {
+      "bytes": 998,
+      "sha256": "d8db419e6c087dfab3978512d83330c6faa4e2bc36eee004dbfcdd7005ca133a"
+    },
+    "sequence-cache.js": {
+      "bytes": 1612,
+      "sha256": "fdddef457d8c8bb3f5d9ebd879367287687bdd01d703fe1e523bb8fcfa0ab674"
+    },
+    "style.css": {
+      "bytes": 33130,
+      "sha256": "f53a6b3a9168fd4f62693857c7bf1d6219307be3c60060d201037525212aecba"
+    },
+    "swipe.js": {
+      "bytes": 2130,
+      "sha256": "87292106e3c6c1de62e1a6ffaafcc2e3eed7b132bbf5ffbc8107e2e74aac6e91"
+    },
+    "tests/fixtures/peony-paper-frame-40.png": {
+      "bytes": 795689,
+      "sha256": "8c44ad7b5f04a7e54b592fde47498b91c52af42caff5b1f125a10f33f3597b45"
+    },
+    "tools/fonts/BodoniModa.ttf": {
+      "bytes": 162104,
+      "sha256": "550f5e34ee0a828d7941b1fe9bc58b34e5260d3f33a61532e6d0a0114e79a5cf"
+    },
+    "tools/fonts/OFL.txt": {
+      "bytes": 4400,
+      "sha256": "931dfe2e0cd3c9443295f5c1d754b8a8403bf060df50c1d5900267ade83d0046"
+    },
+    "tracking.js": {
+      "bytes": 2346,
+      "sha256": "7e0e5e5a421f7a657cdbb6af9ba27209df355d8b6f95b06d73e6794aee7f13c5"
+    },
+    "vendor/vision_bundle.mjs": {
+      "bytes": 137809,
+      "sha256": "3252b10e0fd26c4095e4b6ee545c1c898120b3a3813388ecd4876abe6f1399a9"
+    },
+    "vendor/wasm/vision_wasm_internal.js": {
+      "bytes": 204284,
+      "sha256": "4a97e2520ba506c680ecd6ba6acfb146888afa0e2746d57f205352bc6ebb82eb"
+    },
+    "vendor/wasm/vision_wasm_internal.wasm": {
+      "bytes": 9574032,
+      "sha256": "f00ec4731faa23b3e714d00e88d4d10e2df5c0a427d3a2b4ae6e3526fdd14ef7"
+    },
+    "vendor/wasm/vision_wasm_internal.wasm.gz": {
+      "bytes": 2899604,
+      "sha256": "119b9b71df75a9dd7763fcc8ecf7949d518f68d4e1261e6c5d546b169507bc45"
+    },
+    "vendor/wasm/vision_wasm_nosimd_internal.js": {
+      "bytes": 204137,
+      "sha256": "927def7b465c51b86e4b3060f93646aca4e27121f4b8fc0483786e407ea9cf1f"
+    },
+    "vendor/wasm/vision_wasm_nosimd_internal.wasm": {
+      "bytes": 9448638,
+      "sha256": "3821ea9b1f7fb8c549ef2a064ef5c85750bf375c545a49fd6eea0df44a95f1f4"
+    },
+    "vendor/wasm/vision_wasm_nosimd_internal.wasm.gz": {
+      "bytes": 2896260,
+      "sha256": "8e040dc5d7fa770a2915bedcf50920bc9c4629b09f59b1a4592842c2c2a5ff28"
+    },
+    "video-sequence.js": {
+      "bytes": 2730,
+      "sha256": "b6dfc208031f1dc58a5644fa5aa50f18a33c8a555e8a5f0d31d5f844f0ef3895"
+    },
+    "vision-client.js": {
+      "bytes": 1685,
+      "sha256": "a52c0d68c5c3a216bf633d915941ab3f27323508b531621fd7aca3a3b22ea675"
+    },
+    "vision-worker.js": {
+      "bytes": 3248,
+      "sha256": "81ac1828a322075195fa85fdb435f662e13af2840941e0d3836fe2e4222ad0b6"
+    }
+  }
+}

@@ -25,7 +25,7 @@ async function runtime(){
  return runtimePromise;
 }
 async function initialize(mode){
- if(!deliveryAPI){deliveryAPI=await import('./asset-delivery.js?v=delivery1');delivery=deliveryAPI.createAssetDelivery();}
+ if(!deliveryAPI){deliveryAPI=await import('./asset-delivery.js?v=independent1');delivery=deliveryAPI.createAssetDelivery();}
  progress.clear();reportedPercent=0;
  if(!hand){
   report('正在准备手势识别资源…');

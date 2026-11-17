@@ -1,6 +1,6 @@
 export const DELIVERY_VERSION='delivery-v1';
 export const PACKED_ASSET_BYTES={'models/hand_landmarker.task.gz':5813795,'models/face_landmarker.task.gz':3331700,'vendor/wasm/vision_wasm_internal.wasm.gz':2899604,'vendor/wasm/vision_wasm_nosimd_internal.wasm.gz':2896260};
-export const DELIVERY_MIRROR='https://cdn.jsdelivr.net/gh/q499439909/flower-bloom-garden-20261025@delivery-v1/';
+export const DELIVERY_MIRROR='https://cdn.jsdelivr.net/gh/q499439909/a-bloom-for-you@models-v1/';
 export function createAssetDelivery({baseURL=new URL('.',import.meta.url).href,mirrorURL=DELIVERY_MIRROR,fetchImpl=globalThis.fetch,cacheStorage=globalThis.caches,hedgeMs=1200,timeoutMs=45000}={}){
  async function cacheForAssets(){try{return await cacheStorage?.open('flower-assets-'+DELIVERY_VERSION);}catch{return null;}}
  async function read(path,{onProgress=()=>{},expectedBytes=0}={}){

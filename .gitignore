@@ -1,1 +1,11 @@
 .DS_Store
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+build/
+backups/
+archives/
+*.bundle
+*.tar.gz
+*-preview.png

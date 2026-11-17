@@ -1,0 +1,12 @@
+{
+  "name": "a-bloom-for-you",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "verify:assets": "python3 scripts/verify-assets.py",
+    "serve": "python3 -m http.server 8080 --bind 127.0.0.1"
+  }
+}

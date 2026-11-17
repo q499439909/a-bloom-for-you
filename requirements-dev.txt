@@ -1,0 +1,4 @@
+# Only needed to rebuild videos, posters and the font. Runtime and Node tests do not use these.
+Pillow==11.3.0
+imageio-ffmpeg==0.6.0
+fonttools==4.60.2

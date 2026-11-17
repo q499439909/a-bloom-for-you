@@ -36,9 +36,9 @@
 
 ## 本仓库包含什么
 
-这是网站的**完整可运行静态发布版本**。运行需要的 HTML、CSS、JavaScript、花朵视频、首屏预览、字体、识别模型及 WebAssembly 引擎均已包含，可以克隆后独立运行或重新部署。
+本仓库现在同时包含**运行代码、完整自动测试、素材处理脚本和维护文档**，是项目独立维护的入口。HTML、CSS、JavaScript、花朵视频、首屏预览、字体、识别模型及 WebAssembly 引擎均已包含，可以克隆后独立运行、测试或重新部署。
 
-以下开发资料**不在本发布仓库中**：原始逐帧 PNG / JPEG 素材、高分辨率源视频、自动化测试、开发过程截图及早期版本的完整开发历史。这些资料另外保存在开发工作区。这里的 Git 历史从新站首次发布开始记录。
+原始图片与旧 Git 历史以 [独立归档附件](https://github.com/q499439909/a-bloom-for-you/releases/tag/archive-2026-11-17) 保存于本仓库的 Release，不放进网页分支。包括 7 组 593 张 PNG、3 段高分辨率源视频和 5 份历史仓库 bundle。网页运行与自动测试不需要下载这些大文件；重新生成素材时按 [归档恢复说明](docs/ARCHIVES.md) 下载。完整本机 Git 元数据另有本地备份，旧仓库没有删除。
 
 ```text
 .
@@ -60,7 +60,12 @@
 │   ├── posters/                # 花朵静态预览
 │   └── fonts/                  # 数字艺术字体及 OFL 许可
 ├── models/                     # 手部、面部识别模型与 gzip 版本
-└── vendor/                     # MediaPipe 与 WASM 运行文件
+├── vendor/                     # MediaPipe 与 WASM 运行文件
+├── tests/                      # 自动测试、自带 PNG 夹具与解码辅助模块
+├── scripts/                    # 素材重建、校验及归档恢复工具
+├── tools/fonts/                # 字体源文件及许可
+├── docs/                       # 开发、部署、素材清单与备份说明
+└── .github/workflows/tests.yml # GitHub Actions 自动检查
 ```
 
 `paper-mask.js` 和 `sequence-cache.js` 为保留的旧实现模块；当前展示走视频解码流程。
@@ -88,7 +93,7 @@ python3 -m http.server 8080 --bind 127.0.0.1
 - 首屏内嵌静态预览；优先准备第一朵花的首帧，再后台准备识别，识别就绪后预载其他花种。
 - 模型与 WASM 使用 gzip 资源及浏览器缓存；不支持解压接口时回退到随仓库提供的原始文件。
 
-模型下载以本站为主，同时提供固定版本的 jsDelivr 备用线路。备用地址指向旧仓库 `flower-bloom-garden-20261025` 的不可变 `delivery-v1` 标签，仅作为下载加速 / 容错；本站已包含相同资源，不依赖旧仓库才能基本运行。维护时不要随意删除旧仓库或移动该标签。
+模型下载以本站为主，固定版本的 jsDelivr 备用线路也已迁入本仓库：`a-bloom-for-you@models-v1`。本站和备用线路使用同一份模型，不再依赖旧仓库。模型未变化，因此保留原缓存键，详见 [部署说明](docs/DEPLOYMENT.md)。
 
 ## 摄像头与隐私
 
@@ -100,7 +105,16 @@ python3 -m http.server 8080 --bind 127.0.0.1
 
 自行部署时，把本仓库全部运行文件上传到支持静态文件与 HTTPS 的服务即可。使用 GitHub Pages 时，在仓库的 **Settings → Pages** 选择 `Deploy from a branch`、`main`、`/ (root)`。
 
-维护本项目时，开发源位于独立的 `peony-interactive/dist/` 工作区；验证修改后，将对应运行文件同步至本仓库，提交并推送 `main`。本仓库目前未收录开发侧自动化测试，不能在这里直接运行开发仓库的测试命令。
+以后直接在本仓库修改、测试、提交和部署，不再需要旧开发目录。安装 Node.js 20+ 后运行：
+
+```bash
+npm test
+npm run verify:assets
+```
+
+无需 `npm install`；测试使用 Node 内置模块，资源检查使用 Python 3 标准库。GitHub Actions 会在推送与 Pull Request 时执行同样的检查。
+
+需要从原图重新编码时，按 [开发说明](docs/DEVELOPMENT.md) 安装 `requirements-dev.txt`，运行 `scripts/prepare-assets.py`。脚本覆盖视频、预览图、首屏预览、字体和模型 gzip，并提供输出报告、显式安装与校验流程。源帧文件名、哈希、帧数及编码参数见 [素材清单](docs/materials.json)。
 
 模型资源变更时，需要同时更新压缩文件、下载字节校验和备用线路版本，相关入口为 `asset-delivery.js`。花朵资源配置、文案及帧数位于 `app.js`。
 

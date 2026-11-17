@@ -1,5 +1,5 @@
 import {launchCamera} from './camera-launch.js';
-import {createVisionClient} from './vision-client.js?v=delivery1';
+import {createVisionClient} from './vision-client.js?v=independent1';
 import {createVideoSequence} from './video-sequence.js?v=fast2';
 import {createBloomExperience} from './bloom-experience.js?v=feedback2';
 import {bloomGlowEffect,bloomProgressFeedback} from './bloom-feedback.js?v=feedback2';

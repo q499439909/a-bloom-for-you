@@ -6,7 +6,7 @@ export function createVisionClient({onProgress=()=>{}}={}){
  }
  function ensureWorker(){
   if(worker)return worker;
-  const current=worker=new Worker(new URL('./vision-worker.js?v=delivery1',import.meta.url));
+  const current=worker=new Worker(new URL('./vision-worker.js?v=independent1',import.meta.url));
   current.onmessage=({data})=>{
    if(worker!==current)return;
    if(data.type==='progress'){onProgress(data.message);return;}
